@@ -3,7 +3,7 @@
  <tileset firstgid="1" name="tiles" tilewidth="15" tileheight="16" tilecount="3760" columns="47">
   <image source="../images/tiles.png" width="705" height="1280"/>
  </tileset>
- <layer name="backgroundLayer" width="20" height="30" offsetx="-42" offsety="-53">
+ <layer name="backgroundLayer" width="20" height="30" visible="0" offsetx="-42" offsety="-53">
   <data encoding="csv">
 102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,
 102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,
@@ -37,7 +37,7 @@
 102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102,102
 </data>
  </layer>
- <layer name="collideLayer" width="20" height="30" offsetx="-42" offsety="-54">
+ <layer name="collideLayer" width="20" height="30" visible="0" offsetx="-42" offsety="-54">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -80,6 +80,5 @@
     <property name="playerStart" type="int" value="50"/>
    </properties>
   </object>
-  <object id="2" gid="178" x="265" y="240" width="15" height="16"/>
  </objectgroup>
 </map>
