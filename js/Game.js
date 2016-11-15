@@ -25,14 +25,18 @@ TopDownGame.Game.prototype = {
         //this.map.setCollision("")
         //this.createItems();
         //this.createDoors();    
-        //create player
+        //create playernu
         var result = this.findObjectsByType('playerStart', this.map, 'player')
         this.player = this.game.add.sprite(result[0],result[1], 'player');
-      
+        //this.enemies = this.game.add.group();
+        //this.enemies.enableBody = true;
+        //this.test = this.game.add.sprite(40,50,'player');
+        //this.createFromTiledObject('enemies',this.enemies);
+        this.createEnemies();
         this.game.physics.arcade.enable(this.player);
         this.player.body.velocity.y =0;
        
-        //the camera will follow the player in the world
+        //the camera will follow the player in the worldnu
         this.game.camera.follow(this.player);
         //move player with cursor keys
         this.cursors = this.game.input.keyboard.createCursorKeys();
@@ -43,6 +47,18 @@ TopDownGame.Game.prototype = {
         this.items.enableBody = true;
         var item;
         result = this.findObjectsByType('item', this.map, 'objectsLayer');
+        result.forEach(function (element) {
+            this.createFromTiledObject(element, this.items);
+        }, this);
+    }
+
+    , createEnemies: function () {
+        //create items
+        this.items = this.game.add.group();
+        this.items.enableBody = true;
+        var item;
+        result = this.findObjectsByType('enemy', this.map, 'enemies');
+        console.log( result);
         result.forEach(function (element) {
             this.createFromTiledObject(element, this.items);
         }, this);
@@ -73,7 +89,7 @@ TopDownGame.Game.prototype = {
     , //create a sprite from an object
     createFromTiledObject: function (element, group) {
         var sprite = group.create(element.x, element.y, element.properties.sprite);
-        //copy all properties to the sprite
+        //copy all properties to ttilehe sprite
         Object.keys(element.properties).forEach(function (key) {
             sprite[key] = element.properties[key];
         });
@@ -85,6 +101,7 @@ TopDownGame.Game.prototype = {
         
         this.player.body.gravity.y = 200; 
         this.game.physics.arcade.collide(this.player,this.blockedLayer );
+        this.game.physics.arcade.collide(this.player,this.enemies );
         this.game.physics.arcade.overlap(this.player, this.items, this.collect, null, this);
         this.game.physics.arcade.overlap(this.player, this.doors, this.enterDoor, null, this);
         //player movement
